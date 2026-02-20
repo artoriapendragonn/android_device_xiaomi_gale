@@ -71,7 +71,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_xiaomi_gale
+# TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_xiaomi_gale
+$(call soong_config_set,libinit,vendor_init_lib,init_xiaomi_gale)
 TARGET_RECOVERY_DEVICE_MODULES := init_xiaomi_gale
 
 # Kernel
