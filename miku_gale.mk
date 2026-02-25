@@ -14,9 +14,9 @@ $(call inherit-product, device/xiaomi/gale/device.mk)
 # Inherit some common LineageOS stuff.
 TARGET_BUILD_GAPPS := true
 TARGET_ENABLE_BLUR := true
-$(call inherit-product, vendor/voltage/config/common_full_phone.mk)
+$(call inherit-product, vendor/miku/build/product/miku_product_phone.mk)
 
-PRODUCT_NAME := voltage_gale
+PRODUCT_NAME := miku_gale
 PRODUCT_DEVICE := gale
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := Redmi

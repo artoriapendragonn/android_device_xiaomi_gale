@@ -5,5 +5,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/voltage_gale.mk
+    $(LOCAL_DIR)/miku_gale.mk
 

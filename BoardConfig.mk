@@ -8,6 +8,8 @@ DEVICE_PATH := device/xiaomi/gale
 
 BUILD_BROKEN_DUP_RULES := true
 
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
+
 # Enable 64-bit for non-zygote.
 ZYGOTE_FORCE_64 := true
 
@@ -126,10 +128,10 @@ BOARD_SUPER_PARTITION_SIZE := 7516192768
 BOARD_SUPER_PARTITION_GROUPS := mediatek_dynamic_partitions
 BOARD_MEDIATEK_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext vendor product
 BOARD_MEDIATEK_DYNAMIC_PARTITIONS_SIZE := 7515140094
--include vendor/voltage/config/BoardConfigReservedSize.mk
+-include vendor/miku/config/BoardConfigReservedSize.mk
 
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
 
@@ -167,6 +169,12 @@ BOARD_AVB_VBMETA_VENDOR_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_VENDOR_ROLLBACK_INDEX_LOCATION := 3
 
+# Disable FEC for ext4 dm-verity compatibility
+BOARD_AVB_SYSTEM_ADD_HASHTREE_FOOTER_ARGS += --do_not_generate_fec
+BOARD_AVB_VENDOR_ADD_HASHTREE_FOOTER_ARGS += --do_not_generate_fec
+BOARD_AVB_PRODUCT_ADD_HASHTREE_FOOTER_ARGS += --do_not_generate_fec
+BOARD_AVB_SYSTEM_EXT_ADD_HASHTREE_FOOTER_ARGS += --do_not_generate_fec
+
 # Wi-Fi
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -184,7 +192,7 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 # HIDL
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest.xml
 DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/vintf/compatibility_matrix.xml
-# DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := vendor/yaap/config/device_framework_matrix.xml $(DEVICE_PATH)/configs/vintf/framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/configs/vintf/framework_compatibility_matrix.xml
 
 # Inherit the proprietary files
 include vendor/xiaomi/gale/BoardConfigVendor.mk
