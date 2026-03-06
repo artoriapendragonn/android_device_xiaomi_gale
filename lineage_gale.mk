@@ -16,6 +16,9 @@ TARGET_BUILD_GAPPS := true
 TARGET_ENABLE_BLUR := true
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+# Avium UI stuff
+include device/xiaomi/gale/avium_common.mk
+
 PRODUCT_NAME := lineage_gale
 PRODUCT_DEVICE := gale
 PRODUCT_MANUFACTURER := Xiaomi
